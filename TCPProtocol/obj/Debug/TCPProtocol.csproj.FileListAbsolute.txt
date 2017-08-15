@@ -1,0 +1,9 @@
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.exe.config
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.csprojResolveAssemblyReference.cache
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.Properties.Resources.resources
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.csproj.GenerateResource.Cache
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.exe
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.pdb
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.exe
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.pdb
+c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.Form1.resources
