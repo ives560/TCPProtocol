@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Mode\CommonThread.cs" />
+    <Compile Include="protocol\Crc.cs" />
     <Compile Include="protocol\ETCFrame.cs" />
     <Compile Include="protocol\ETCFrameCodec.cs" />
     <Compile Include="protocol\RoadGateFrameCodec.cs" />

@@ -60,7 +60,7 @@ namespace TCPProtocol
                     //校验帧数据
                     if (CheckFrame(FrameBuffer, framelen) == FrameBuffer[framelen - 2])
                     {
-                        RoadGateFrame frmae = Decode(FrameBuffer);
+                        RoadGateFrame frmae = Decode(FrameBuffer, framelen);
                         Remove(framelen);//移除当前帧长
                         return frmae;
                     }
@@ -91,7 +91,7 @@ namespace TCPProtocol
                 _byte = mem.ToArray();
                 writer.Close();
             }
-            return _byte;
+            return EnEscape(_byte, _byte.Length);
         }
 
 
@@ -100,10 +100,13 @@ namespace TCPProtocol
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public RoadGateFrame Decode(byte[] array)
+        public RoadGateFrame Decode(byte[] array,int len)
         {
             RoadGateFrame frame = new RoadGateFrame();
-            using (MemoryStream mem = new MemoryStream(array))
+
+            byte[] buffer = DeEscape(array,len);
+
+            using (MemoryStream mem = new MemoryStream(buffer))
             {
                 BinaryReader reader = new BinaryReader(mem);
 
@@ -121,6 +124,89 @@ namespace TCPProtocol
 
             }
             return frame;
+        }
+
+        /// <summary>
+        /// 添加转义字符
+        /// 数据帧开始、结束标志为 FFH。其他字段不能出现 FFH，如果数据确实为 FFH，需对其进行转义处理。
+        /// 发送数据时，如果在其它字段中出现 FFH 字节时，将 FFH 分解为 FEH 和 01H 这两个字节来发送；
+        /// 如果在其它字段出现 FEH 字节时，需将 FEH 分解为 FEH 和 00H 这两个字节来发送。
+        /// 接收数据时，如果出现“FE 01”这样连续两个字节时将之合为一个字节 FFH；
+        /// 如果出现“FE 00”这样连续两个字节时将之合为一个字节 FEH。
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public byte[] EnEscape(byte[] array, int len)
+        {
+            List<byte> list = new List<byte>();
+            list.Add(array[0]);
+            list.Add(array[1]);
+
+            for (int i = 2; i < len - 1; i++)
+            {
+                switch (array[i])
+                {
+                    case 0xff:
+                        list.Add(0xfe);
+                        list.Add(0x01);
+                        break;
+                    case 0xfe:
+                        list.Add(0xfe);
+                        list.Add(0x00);
+                        break;
+                    default:
+                        list.Add(array[i]);
+                        break;
+                }
+
+            }
+
+            list.Add(array[len - 1]);
+
+            return list.ToArray();
+        }
+
+
+        /// <summary>
+        /// 去除转义字符
+        /// 数据帧开始、结束标志为 FFH。其他字段不能出现 FFH，如果数据确实为 FFH，需对其进行转义处理。
+        /// 发送数据时，如果在其它字段中出现 FFH 字节时，将 FFH 分解为 FEH 和 01H 这两个字节来发送；
+        /// 如果在其它字段出现 FEH 字节时，需将 FEH 分解为 FEH 和 00H 这两个字节来发送。
+        /// 接收数据时，如果出现“FE 01”这样连续两个字节时将之合为一个字节 FFH；
+        /// 如果出现“FE 00”这样连续两个字节时将之合为一个字节 FEH。
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public byte[] DeEscape(byte[] array, int len)
+        {
+            List<byte> list = new List<byte>();
+            for (int i = 0; i < len; i++)
+            {
+                if (array[i] == 0xfe)
+                {
+                    switch (array[i + 1])
+                    {
+                        case 0x00:
+                            list.Add(0xfe);
+                            i++;
+                            break;
+                        case 0x01:
+                            list.Add(0xff);
+                            i++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    list.Add(array[i]);
+                }
+            }
+
+            return list.ToArray();
         }
 
         /// <summary>

@@ -7,3 +7,12 @@ c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\bin
 c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.exe
 c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.pdb
 c:\users\asbzh\documents\visual studio 2013\Projects\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.Form1.resources
+F:\GitHub\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.exe.config
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.exe
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.pdb
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.csprojResolveAssemblyReference.cache
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.Form1.resources
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.Properties.Resources.resources
+F:\GitHub\TCPProtocol\TCPProtocol\obj\Debug\TCPProtocol.csproj.GenerateResource.Cache
+F:\GitHub\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.exe
+F:\GitHub\TCPProtocol\TCPProtocol\bin\Debug\TCPProtocol.pdb
